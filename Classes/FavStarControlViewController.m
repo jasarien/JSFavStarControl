@@ -1,11 +1,3 @@
-//
-//  FavStarControlViewController.m
-//  FavStarControl
-//
-//  Created by james on 17/02/2010.
-//  Copyright Truphone 2010. All rights reserved.
-//
-
 #import "FavStarControlViewController.h"
 #import "JSFavStarControl.h"
 
