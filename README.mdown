@@ -1,0 +1,12 @@
+JSFavStarControl
+==================
+
+JSFavStarControl is a UI control that resembles the 'star rating' control seen in the iPod app.
+
+JSFavStarControl allows you to select a rating between 0 and 5 stars.
+
+To use it: 
+
+- `#include "JSFavStarControl.h"` where you want to use it
+- Create an instance, initing with a CGPoint (the position in your view from which it will be drawn) and a custom star and dot image if you wish (pass nil if you want to use the default).
+- Add the control as a subview of your view.
