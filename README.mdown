@@ -10,3 +10,8 @@ To use it:
 - `#include "JSFavStarControl.h"` where you want to use it
 - Create an instance, initing with a CGPoint (the position in your view from which it will be drawn) and a custom star and dot image if you wish (pass nil if you want to use the default).
 - Add the control as a subview of your view.
+
+License:
+
+Public Domain - there are no restrictions on the use of this code. It may be used without attribution in any commercial or non commercial application.
+
