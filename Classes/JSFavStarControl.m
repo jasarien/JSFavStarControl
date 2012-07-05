@@ -11,20 +11,72 @@
 
 #define RATING_MAX 5
 
+@interface JSFavStarControl ()
+
+-(BOOL)isFirstStarTouched:(CGPoint)touchLocation section:(CGRect)section;
+
+@end
+
 @implementation JSFavStarControl
 
 @synthesize rating = _rating;
+@synthesize padding;
 
-- (id)initWithLocation:(CGPoint)location dotImage:(UIImage *)dotImage starImage:(UIImage *)starImage
+-(BOOL)isFirstStarTouched:(CGPoint)touchLocation section:(CGRect)section
 {
-	if (self = [self initWithFrame:CGRectMake(location.x, location.y, 100, 20)])
+    CGFloat w = (_star!=nil ) ? _star.size.width : _fontSize;
+    
+    return (touchLocation.x >0 && touchLocation.x < section.origin.x + w );
+}
+
+- (void)initialize
+{
+    _rating = 0;
+    _fontSize = self.frame.size.height -2 ;
+    self.padding = 15.0;
+    //self.backgroundColor = [UIColor clearColor];
+    self.opaque = NO;
+    
+    
+}
+
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    if( self = [super initWithCoder:aDecoder] ) {
+        
+        [self initialize];
+    }
+    
+    return self;
+    
+}
+
+- (id)initWithFrame:(CGRect)frame 
+{
+    if( self = [super initWithFrame:frame] ) {
+        
+        [self initialize];
+    }
+    
+    return self;
+}
+
+- (id)initWithImages:(CGRect)frame dotImage:(UIImage *)dotImage starImage:(UIImage *)starImage
+{
+    NSParameterAssert(dotImage);
+    NSParameterAssert(starImage);
+    
+    
+	if (self = [super initWithFrame:frame])
 	{
-		_rating = 0;
-		self.backgroundColor = [UIColor clearColor];
-		self.opaque = NO;
-		
+        [self initialize];
+#if __has_feature(objc_arc)
+		_dot = dotImage;
+		_star = starImage;
+#else
 		_dot = [dotImage retain];
 		_star = [starImage retain];
+#endif
 	}
 	
 	return self;
@@ -39,9 +91,9 @@
 		if (_star)
 			[_star drawAtPoint:currPoint];
 		else
-			[@"★" drawAtPoint:currPoint withFont:[UIFont boldSystemFontOfSize:22]];
+			[@"★" drawAtPoint:currPoint withFont:[UIFont boldSystemFontOfSize:_fontSize]];
 			
-		currPoint.x += 20;
+		currPoint.x += self.padding;
 	}
 	
 	NSInteger remaining = RATING_MAX - _rating;
@@ -51,21 +103,25 @@
 		if (_dot)
 			[_dot drawAtPoint:currPoint];
 		else
-			[@" •" drawAtPoint:currPoint withFont:[UIFont boldSystemFontOfSize:22]];
-		currPoint.x += 20;
+			[@" •" drawAtPoint:currPoint withFont:[UIFont boldSystemFontOfSize:_fontSize]];
+		currPoint.x += self.padding;
 	}
 }
 
 
 - (void)dealloc
 {
-	[_dot release];
+#if !__has_feature(objc_arc)
+    [_dot release];
 	[_star release];
-	
+#endif
+    
 	_dot = nil,
 	_star = nil;
 	
+#if !__has_feature(objc_arc)
     [super dealloc];
+#endif
 }
 
 
@@ -76,22 +132,29 @@
 	
 	CGPoint touchLocation = [touch locationInView:self];
 	
-	for (int i = 0; i < RATING_MAX; i++)
-	{		
-		if (touchLocation.x > section.origin.x && touchLocation.x < section.origin.x + section.size.width)
-		{ // touch is inside section
-			if (_rating != (i+1))
-			{
-				_rating = i+1;
-				[self sendActionsForControlEvents:UIControlEventValueChanged];
-			}
-			
-			break;
-		}
-		
-		section.origin.x += section.size.width;
+    if( _rating == 1 &&  [self isFirstStarTouched:touchLocation section:section]) {
+        
+        _rating = 0;
+        [self sendActionsForControlEvents:UIControlEventValueChanged];
+        
+    }
+    else {
+        for (int i = 0; i < RATING_MAX; i++)
+        {		
+            if (touchLocation.x > section.origin.x && touchLocation.x < section.origin.x + section.size.width)
+            { // touch is inside section
+                if (_rating != (i+1))
+                {
+                    _rating = i+1;
+                    [self sendActionsForControlEvents:UIControlEventValueChanged];
+                }
+                
+                break;
+            }
+            
+            section.origin.x += section.size.width;
+        }
 	}
-	
 	[self setNeedsDisplay];
 	return YES;
 }
@@ -148,7 +211,11 @@
 	
 	CGPoint touchLocation = [touch locationInView:self];
 	
-	if (touchLocation.x < 0)
+    NSLog(@"endTrackingWithTouch touchLocation.x=[%f]", touchLocation.x);
+    
+    if( _rating == 0  &&  [self isFirstStarTouched:touchLocation section:section] ) return;
+
+    if (touchLocation.x <= 0 )
 	{
 		if (_rating != 0)
 		{	
@@ -158,9 +225,9 @@
 	}
 	else if (touchLocation.x > width)
 	{
-		if (_rating != 5)
+		if (_rating != RATING_MAX)
 		{
-			_rating = 5;
+			_rating = RATING_MAX;
 			[self sendActionsForControlEvents:UIControlEventValueChanged];
 		}
 		

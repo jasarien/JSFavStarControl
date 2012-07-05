@@ -16,8 +16,10 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* FavStarControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* FavStarControlViewController.m */; };
 		758D370E112C04F6003C8E62 /* JSFavStarControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 758D370D112C04F6003C8E62 /* JSFavStarControl.m */; };
-		758D3711112C0881003C8E62 /* dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 758D370F112C0881003C8E62 /* dot.png */; };
-		758D3712112C0881003C8E62 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 758D3710112C0881003C8E62 /* star.png */; };
+		A09CDEBE15A5FDD000452597 /* dot20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = A09CDEBA15A5FDD000452597 /* dot20x20.png */; };
+		A09CDEBF15A5FDD000452597 /* star20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = A09CDEBB15A5FDD000452597 /* star20x20.png */; };
+		A09CDEC015A5FDD000452597 /* dot10x10.png in Resources */ = {isa = PBXBuildFile; fileRef = A09CDEBC15A5FDD000452597 /* dot10x10.png */; };
+		A09CDEC115A5FDD000452597 /* star10x10.png in Resources */ = {isa = PBXBuildFile; fileRef = A09CDEBD15A5FDD000452597 /* star10x10.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,9 +37,11 @@
 		32CA4F630368D1EE00C91783 /* FavStarControl_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavStarControl_Prefix.pch; sourceTree = "<group>"; };
 		758D370C112C04F6003C8E62 /* JSFavStarControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSFavStarControl.h; sourceTree = "<group>"; };
 		758D370D112C04F6003C8E62 /* JSFavStarControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSFavStarControl.m; sourceTree = "<group>"; };
-		758D370F112C0881003C8E62 /* dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot.png; sourceTree = "<group>"; };
-		758D3710112C0881003C8E62 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* FavStarControl-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "FavStarControl-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		A09CDEBA15A5FDD000452597 /* dot20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot20x20.png; sourceTree = "<group>"; };
+		A09CDEBB15A5FDD000452597 /* star20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star20x20.png; sourceTree = "<group>"; };
+		A09CDEBC15A5FDD000452597 /* dot10x10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot10x10.png; sourceTree = "<group>"; };
+		A09CDEBD15A5FDD000452597 /* star10x10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star10x10.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +103,10 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				758D370F112C0881003C8E62 /* dot.png */,
-				758D3710112C0881003C8E62 /* star.png */,
+				A09CDEBA15A5FDD000452597 /* dot20x20.png */,
+				A09CDEBB15A5FDD000452597 /* star20x20.png */,
+				A09CDEBC15A5FDD000452597 /* dot10x10.png */,
+				A09CDEBD15A5FDD000452597 /* star10x10.png */,
 				2899E5210DE3E06400AC0155 /* FavStarControlViewController.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* FavStarControl-Info.plist */,
@@ -169,8 +175,10 @@
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				2899E5220DE3E06400AC0155 /* FavStarControlViewController.xib in Resources */,
-				758D3711112C0881003C8E62 /* dot.png in Resources */,
-				758D3712112C0881003C8E62 /* star.png in Resources */,
+				A09CDEBE15A5FDD000452597 /* dot20x20.png in Resources */,
+				A09CDEBF15A5FDD000452597 /* star20x20.png in Resources */,
+				A09CDEC015A5FDD000452597 /* dot10x10.png in Resources */,
+				A09CDEC115A5FDD000452597 /* star10x10.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +210,7 @@
 				GCC_PREFIX_HEADER = FavStarControl_Prefix.pch;
 				INFOPLIST_FILE = "FavStarControl-Info.plist";
 				PRODUCT_NAME = FavStarControl;
+				SDKROOT = iphoneos5.1;
 			};
 			name = Debug;
 		};
@@ -214,6 +223,7 @@
 				GCC_PREFIX_HEADER = FavStarControl_Prefix.pch;
 				INFOPLIST_FILE = "FavStarControl-Info.plist";
 				PRODUCT_NAME = FavStarControl;
+				SDKROOT = iphoneos5.1;
 			};
 			name = Release;
 		};
@@ -221,6 +231,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -234,6 +246,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
