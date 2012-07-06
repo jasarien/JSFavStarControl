@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
 
   # Specify the location from where the source should be retreived.
   #
-  s.source    = { :git => 'https://github.com/bsorrentino/JSFavStarControl.git', :tag => '0.1' }
+  s.source    = { :git => 'https://github.com/bsorrentino/JSFavStarControl.git', :tag => '0.2' }
   # s.source   = { :svn => 'http://EXAMPLE/JSFavStarControl/tags/1.0.0' }
   # s.source   = { :hg  => 'http://EXAMPLE/JSFavStarControl', :revision => '1.0.0' }
 
