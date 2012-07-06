@@ -30,6 +30,8 @@
 	JSFavStarControl *rating = [[JSFavStarControl alloc] initWithImages:CGRectMake(110, 220, 100, 20) 
                                                                  dotImage:dot 
                                                                 starImage:star];
+    rating.rating = 1;
+    
 	[rating addTarget:self action:@selector(updateRating:) forControlEvents:UIControlEventValueChanged];
 	[self.view addSubview:rating];
     

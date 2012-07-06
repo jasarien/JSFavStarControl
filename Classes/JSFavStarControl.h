@@ -35,7 +35,7 @@
 }
 
 @property (nonatomic,assign) CGFloat padding;
-@property (nonatomic,assign,readonly) NSInteger rating;
+@property (nonatomic,assign) NSInteger rating;
 
 // dotImage and starImage can both be nil, or not even a dot or a star (a any images you want!)
 // If either of these parameters are nil, the class will draw its own dot/star

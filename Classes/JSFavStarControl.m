@@ -40,6 +40,17 @@
     
 }
 
+- (void)setRating:(NSInteger)rating
+{
+    if( rating != _rating ) {
+        _rating = rating;
+        
+        [self setNeedsDisplay];
+    }
+}
+
+#pragma mark - initialization
+
 -(id)initWithCoder:(NSCoder *)aDecoder
 {
     if( self = [super initWithCoder:aDecoder] ) {
