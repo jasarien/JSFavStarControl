@@ -7,7 +7,7 @@
 #
 Pod::Spec.new do |s|
   s.name     = 'JSFavStarControl'
-  s.version  = '0.1'
+  s.version  = '0.2'
   s.license  = 'unspecified'
   s.summary   = 'Forked version - A simple rating control for the iPhone'
   s.homepage  = 'https://github.com/bsorrentino/JSFavStarControl'
