@@ -23,8 +23,8 @@
 		self.backgroundColor = [UIColor clearColor];
 		self.opaque = NO;
 		
-		_dot = [dotImage retain];
-		_star = [starImage retain];
+		_dot = dotImage;
+		_star = starImage;
 	}
 	
 	return self;
@@ -59,13 +59,10 @@
 
 - (void)dealloc
 {
-	[_dot release];
-	[_star release];
 	
 	_dot = nil,
 	_star = nil;
 	
-    [super dealloc];
 }
 
 

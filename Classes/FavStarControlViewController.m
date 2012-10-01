@@ -30,7 +30,6 @@
 	JSFavStarControl *rating = [[JSFavStarControl alloc] initWithLocation:CGPointMake(110, 220) dotImage:dot starImage:star];
 	[rating addTarget:self action:@selector(updateRating:) forControlEvents:UIControlEventValueChanged];
 	[self.view addSubview:rating];
-	[rating release];
 }
 
 - (void)updateRating:(id)sender
@@ -60,8 +59,5 @@
 }
 
 
-- (void)dealloc {
-    [super dealloc];
-}
 
 @end
