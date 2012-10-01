@@ -11,9 +11,12 @@
 
 
 // Constants :
-static const CGFloat kFontSize = 22;
+static const CGFloat kFontSize = 20;
 static const NSUInteger kStarWidthAndHeight = 20;
 static const NSUInteger kMaxRating = 5;
+
+static const NSString *kDefaultEmptyChar = @"☆";
+static const NSString *kDefaultSolidChar = @"★";
 
 
 @implementation JSFavStarControl
@@ -28,7 +31,9 @@ static const NSUInteger kMaxRating = 5;
 /**************************************************************************************************/
 #pragma mark - Birth & Death
 
-- (id)initWithLocation:(CGPoint)location dotImage:(UIImage *)dotImage starImage:(UIImage *)starImage
+- (id)initWithLocation:(CGPoint)location
+            emptyImage:(UIImage *)emptyImage
+            solidImage:(UIImage *)solidImage
 {
 	if (self = [self initWithFrame:CGRectMake(location.x,
                                               location.y,
@@ -39,8 +44,8 @@ static const NSUInteger kMaxRating = 5;
 		self.backgroundColor = [UIColor clearColor];
 		self.opaque = NO;
 		
-		_dot = dotImage;
-		_star = starImage;
+		_emptyImage = emptyImage;
+		_solidImage = solidImage;
 	}
 	
 	return self;
@@ -48,8 +53,8 @@ static const NSUInteger kMaxRating = 5;
 
 - (void)dealloc
 {
-	_dot = nil,
-	_star = nil;
+	_emptyImage = nil,
+	_solidImage = nil;
 }
 
 
@@ -62,13 +67,13 @@ static const NSUInteger kMaxRating = 5;
 	
 	for (int i = 0; i < _rating; i++)
 	{
-		if (_star)
+		if (_solidImage)
         {
-            [_star drawAtPoint:currPoint];
+            [_solidImage drawAtPoint:currPoint];
         }
 		else
         {
-            [@"★" drawAtPoint:currPoint withFont:[UIFont boldSystemFontOfSize:22]];
+            [kDefaultSolidChar drawAtPoint:currPoint withFont:[UIFont boldSystemFontOfSize:kFontSize]];
         }
 			
 		currPoint.x += kStarWidthAndHeight;
@@ -78,13 +83,13 @@ static const NSUInteger kMaxRating = 5;
 	
 	for (int i = 0; i < remaining; i++)
 	{
-		if (_dot)
+		if (_emptyImage)
         {
-			[_dot drawAtPoint:currPoint];
+			[_emptyImage drawAtPoint:currPoint];
         }
 		else
         {
-			[@" •" drawAtPoint:currPoint withFont:[UIFont boldSystemFontOfSize:22]];
+			[kDefaultEmptyChar drawAtPoint:currPoint withFont:[UIFont boldSystemFontOfSize:kFontSize]];
         }
 		currPoint.x += kStarWidthAndHeight;
 	}
