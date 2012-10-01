@@ -10,14 +10,21 @@
 #import <UIKit/UIKit.h>
 
 
-@interface JSFavStarControl : UIControl {
-	
+@interface JSFavStarControl : UIControl
+{
 	NSInteger _rating;
-	
 	UIImage *_dot, *_star;
 }
 
+
+/**************************************************************************************************/
+#pragma mark - Getters and Setters
+
 @property (nonatomic, readonly) NSInteger rating;
+
+
+/**************************************************************************************************/
+#pragma mark - Birth & Death
 
 // dotImage and starImage can both be nil, or not even a dot or a star (a any images you want!)
 // If either of these parameters are nil, the class will draw its own dot/star

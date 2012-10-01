@@ -13,7 +13,15 @@
 
 @implementation JSFavStarControl
 
+
+/**************************************************************************************************/
+#pragma mark - Getters & Setters
+
 @synthesize rating = _rating;
+
+
+/**************************************************************************************************/
+#pragma mark - Birth & Death
 
 - (id)initWithLocation:(CGPoint)location dotImage:(UIImage *)dotImage starImage:(UIImage *)starImage
 {
@@ -30,6 +38,16 @@
 	return self;
 }
 
+- (void)dealloc
+{
+	_dot = nil,
+	_star = nil;
+}
+
+
+/**************************************************************************************************/
+#pragma mark - View Lifecycle
+
 - (void)drawRect:(CGRect)rect
 {
 	CGPoint currPoint = CGPointZero;
@@ -37,9 +55,13 @@
 	for (int i = 0; i < _rating; i++)
 	{
 		if (_star)
-			[_star drawAtPoint:currPoint];
+        {
+            [_star drawAtPoint:currPoint];
+        }
 		else
-			[@"★" drawAtPoint:currPoint withFont:[UIFont boldSystemFontOfSize:22]];
+        {
+            [@"★" drawAtPoint:currPoint withFont:[UIFont boldSystemFontOfSize:22]];
+        }
 			
 		currPoint.x += 20;
 	}
@@ -49,22 +71,20 @@
 	for (int i = 0; i < remaining; i++)
 	{
 		if (_dot)
+        {
 			[_dot drawAtPoint:currPoint];
+        }
 		else
+        {
 			[@" •" drawAtPoint:currPoint withFont:[UIFont boldSystemFontOfSize:22]];
+        }
 		currPoint.x += 20;
 	}
 }
 
 
-- (void)dealloc
-{
-	
-	_dot = nil,
-	_star = nil;
-	
-}
-
+/**************************************************************************************************/
+#pragma mark - UIControl
 
 - (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
