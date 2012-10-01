@@ -9,7 +9,12 @@
 
 #import "JSFavStarControl.h"
 
-#define RATING_MAX 5
+
+// Constants :
+static const CGFloat kFontSize = 22;
+static const NSUInteger kStarWidthAndHeight = 20;
+static const NSUInteger kMaxRating = 5;
+
 
 @implementation JSFavStarControl
 
@@ -25,7 +30,10 @@
 
 - (id)initWithLocation:(CGPoint)location dotImage:(UIImage *)dotImage starImage:(UIImage *)starImage
 {
-	if (self = [self initWithFrame:CGRectMake(location.x, location.y, 100, 20)])
+	if (self = [self initWithFrame:CGRectMake(location.x,
+                                              location.y,
+                                              (kMaxRating * kStarWidthAndHeight),
+                                              kStarWidthAndHeight)])
 	{
 		_rating = 0;
 		self.backgroundColor = [UIColor clearColor];
@@ -63,10 +71,10 @@
             [@"★" drawAtPoint:currPoint withFont:[UIFont boldSystemFontOfSize:22]];
         }
 			
-		currPoint.x += 20;
+		currPoint.x += kStarWidthAndHeight;
 	}
 	
-	NSInteger remaining = RATING_MAX - _rating;
+	NSInteger remaining = kMaxRating - _rating;
 	
 	for (int i = 0; i < remaining; i++)
 	{
@@ -78,7 +86,7 @@
         {
 			[@" •" drawAtPoint:currPoint withFont:[UIFont boldSystemFontOfSize:22]];
         }
-		currPoint.x += 20;
+		currPoint.x += kStarWidthAndHeight;
 	}
 }
 
@@ -89,11 +97,11 @@
 - (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
 	CGFloat width = self.frame.size.width;
-	CGRect section = CGRectMake(0, 0, width / RATING_MAX, self.frame.size.height);
+	CGRect section = CGRectMake(0, 0, width / kMaxRating, self.frame.size.height);
 	
 	CGPoint touchLocation = [touch locationInView:self];
 	
-	for (int i = 0; i < RATING_MAX; i++)
+	for (int i = 0 ; i < kMaxRating ; i++)
 	{		
 		if (touchLocation.x > section.origin.x && touchLocation.x < section.origin.x + section.size.width)
 		{ // touch is inside section
@@ -116,7 +124,7 @@
 - (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
 	CGFloat width = self.frame.size.width;
-	CGRect section = CGRectMake(0, 0, width / RATING_MAX, self.frame.size.height);
+	CGRect section = CGRectMake(0, 0, (width / kMaxRating), self.frame.size.height);
 	
 	CGPoint touchLocation = [touch locationInView:self];
 	
@@ -130,17 +138,18 @@
 	}
 	else if (touchLocation.x > width)
 	{
-		if (_rating != 5)
+		if (_rating != kMaxRating)
 		{
-			_rating = 5;
+			_rating = kMaxRating;
 			[self sendActionsForControlEvents:UIControlEventValueChanged];
 		}
 	}
 	else
 	{
-		for (int i = 0; i < RATING_MAX; i++)
+		for (int i = 0 ; i < kMaxRating ; i++)
 		{
-			if (touchLocation.x > section.origin.x && touchLocation.x < section.origin.x + section.size.width)
+			if ((touchLocation.x > section.origin.x)
+                && (touchLocation.x < (section.origin.x + section.size.width)))
 			{ // touch is inside section
 				if (_rating != (i+1))
 				{
@@ -149,7 +158,6 @@
 				}
 				break;
 			}
-			
 			section.origin.x += section.size.width;
 		}
 	}
@@ -161,7 +169,7 @@
 - (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
 	CGFloat width = self.frame.size.width;
-	CGRect section = CGRectMake(0, 0, width / RATING_MAX, self.frame.size.height);
+	CGRect section = CGRectMake(0, 0, (width / kMaxRating), self.frame.size.height);
 	
 	CGPoint touchLocation = [touch locationInView:self];
 	
@@ -180,11 +188,10 @@
 			_rating = 5;
 			[self sendActionsForControlEvents:UIControlEventValueChanged];
 		}
-		
 	}
 	else
 	{
-		for (int i = 0; i < RATING_MAX; i++)
+		for (int i = 0; i < kMaxRating; i++)
 		{
 			if (touchLocation.x > section.origin.x && touchLocation.x < section.origin.x + section.size.width)
 			{
@@ -200,7 +207,6 @@
 			section.origin.x += section.size.width;
 		}
 	}
-	
 	[self setNeedsDisplay];
 }
 
