@@ -19,6 +19,13 @@ static const NSString *kDefaultEmptyChar = @"☆";
 static const NSString *kDefaultSolidChar = @"★";
 
 
+@interface JSFavStarControl (Private)
+
+- (void)handleTouch:(UITouch *)touch andSendEvent:(UIControlEvents)event;
+
+@end
+
+
 @implementation JSFavStarControl
 
 
@@ -106,34 +113,28 @@ static const NSString *kDefaultSolidChar = @"★";
 
 - (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
-	CGFloat width = self.frame.size.width;
-	CGRect section = CGRectMake(0, 0, width / kMaxRating, self.frame.size.height);
-	
-	CGPoint touchLocation = [touch locationInView:self];
-	
-	for (int i = 0 ; i < kMaxRating ; i++)
-	{		
-		if (touchLocation.x > section.origin.x && touchLocation.x < section.origin.x + section.size.width)
-		{ // touch is inside section
-			if (_rating != (i+1))
-			{
-				_rating = i+1;
-				[self sendActionsForControlEvents:UIControlEventValueChanged];
-			}
-			
-			break;
-		}
-		
-		section.origin.x += section.size.width;
-	}
-	
-	[self setNeedsDisplay];
+	[self handleTouch:touch andSendEvent:UIControlEventValueChanged];
 	return YES;
 }
 
 - (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
-	CGFloat width = self.frame.size.width;
+	[self handleTouch:touch andSendEvent:UIControlEventValueChanged];
+	return YES;
+}
+
+- (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
+{
+	[self handleTouch:touch andSendEvent:UIControlEventValueChanged];
+}
+
+
+/**************************************************************************************************/
+#pragma mark - Private Methods
+
+- (void)handleTouch:(UITouch *)touch andSendEvent:(UIControlEvents)event
+{
+    CGFloat width = self.frame.size.width;
 	CGRect section = CGRectMake(0, 0, (width / kMaxRating), self.frame.size.height);
 	
 	CGPoint touchLocation = [touch locationInView:self];
@@ -141,9 +142,9 @@ static const NSString *kDefaultSolidChar = @"★";
 	if (touchLocation.x < 0)
 	{
 		if (_rating != 0)
-		{	
+		{
 			_rating = 0;
-			[self sendActionsForControlEvents:UIControlEventValueChanged];
+			[self sendActionsForControlEvents:event];
 		}
 	}
 	else if (touchLocation.x > width)
@@ -151,69 +152,22 @@ static const NSString *kDefaultSolidChar = @"★";
 		if (_rating != kMaxRating)
 		{
 			_rating = kMaxRating;
-			[self sendActionsForControlEvents:UIControlEventValueChanged];
+			[self sendActionsForControlEvents:event];
 		}
 	}
 	else
 	{
 		for (int i = 0 ; i < kMaxRating ; i++)
 		{
-			if ((touchLocation.x > section.origin.x)
-                && (touchLocation.x < (section.origin.x + section.size.width)))
-			{ // touch is inside section
-				if (_rating != (i+1))
-				{
-					_rating = i+1;
-					[self sendActionsForControlEvents:UIControlEventValueChanged];
-				}
-				break;
-			}
-			section.origin.x += section.size.width;
-		}
-	}
-	
-	[self setNeedsDisplay];
-	return YES;
-}
-
-- (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
-{
-	CGFloat width = self.frame.size.width;
-	CGRect section = CGRectMake(0, 0, (width / kMaxRating), self.frame.size.height);
-	
-	CGPoint touchLocation = [touch locationInView:self];
-	
-	if (touchLocation.x < 0)
-	{
-		if (_rating != 0)
-		{	
-			_rating = 0;
-			[self sendActionsForControlEvents:UIControlEventValueChanged];
-		}
-	}
-	else if (touchLocation.x > width)
-	{
-		if (_rating != 5)
-		{
-			_rating = 5;
-			[self sendActionsForControlEvents:UIControlEventValueChanged];
-		}
-	}
-	else
-	{
-		for (int i = 0; i < kMaxRating; i++)
-		{
-			if (touchLocation.x > section.origin.x && touchLocation.x < section.origin.x + section.size.width)
+			if ((touchLocation.x > section.origin.x) && (touchLocation.x < (section.origin.x + section.size.width)))
 			{
 				if (_rating != (i+1))
 				{
 					_rating = i+1;
-					[self sendActionsForControlEvents:UIControlEventValueChanged];
+					[self sendActionsForControlEvents:event];
 				}
-				
 				break;
 			}
-			
 			section.origin.x += section.size.width;
 		}
 	}
