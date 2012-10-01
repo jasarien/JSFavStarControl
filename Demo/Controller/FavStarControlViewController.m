@@ -23,8 +23,9 @@
 	dot = [UIImage imageNamed:@"dot.png"];
 	star = [UIImage imageNamed:@"star.png"];
 	JSFavStarControl *rating = [[JSFavStarControl alloc] initWithLocation:CGPointMake(110, 220)
-                                                                 dotImage:dot
-                                                                starImage:star];
+                                                               emptyImage:dot
+                                                               solidImage:star
+                                                             andMaxRating:6];
 	[rating addTarget:self action:@selector(updateRating:) forControlEvents:UIControlEventValueChanged];
 	[self.view addSubview:rating];
 }

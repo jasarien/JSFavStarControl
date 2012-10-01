@@ -13,7 +13,6 @@
 // Constants :
 static const CGFloat kFontSize = 20;
 static const NSInteger kStarWidthAndHeight = 20;
-static const NSInteger kMaxRating = 5;
 
 static const NSString *kDefaultEmptyChar = @"☆";
 static const NSString *kDefaultSolidChar = @"★";
@@ -36,7 +35,8 @@ static const NSString *kDefaultSolidChar = @"★";
 - (void)setRating:(NSInteger)rating
 {
     _rating = (rating < 0) ? 0 : rating;
-    _rating = (rating > kMaxRating) ? kMaxRating : rating;
+    _rating = (rating > _maxRating) ? _maxRating : rating;
+    [self setNeedsDisplay];
 }
 
 
@@ -46,10 +46,11 @@ static const NSString *kDefaultSolidChar = @"★";
 - (id)initWithLocation:(CGPoint)location
             emptyImage:(UIImage *)emptyImage
             solidImage:(UIImage *)solidImage
+          andMaxRating:(NSInteger)maxRating
 {
 	if (self = [self initWithFrame:CGRectMake(location.x,
                                               location.y,
-                                              (kMaxRating * kStarWidthAndHeight),
+                                              (maxRating * kStarWidthAndHeight),
                                               kStarWidthAndHeight)])
 	{
 		_rating = 0;
@@ -58,6 +59,7 @@ static const NSString *kDefaultSolidChar = @"★";
 		
 		_emptyImage = emptyImage;
 		_solidImage = solidImage;
+        _maxRating = maxRating;
 	}
 	
 	return self;
@@ -91,7 +93,7 @@ static const NSString *kDefaultSolidChar = @"★";
 		currPoint.x += kStarWidthAndHeight;
 	}
 	
-	NSInteger remaining = kMaxRating - _rating;
+	NSInteger remaining = _maxRating - _rating;
 	
 	for (int i = 0; i < remaining; i++)
 	{
@@ -135,7 +137,7 @@ static const NSString *kDefaultSolidChar = @"★";
 - (void)handleTouch:(UITouch *)touch andSendEvent:(UIControlEvents)event
 {
     CGFloat width = self.frame.size.width;
-	CGRect section = CGRectMake(0, 0, (width / kMaxRating), self.frame.size.height);
+	CGRect section = CGRectMake(0, 0, (width / _maxRating), self.frame.size.height);
 	
 	CGPoint touchLocation = [touch locationInView:self];
 	
@@ -149,15 +151,15 @@ static const NSString *kDefaultSolidChar = @"★";
 	}
 	else if (touchLocation.x > width)
 	{
-		if (_rating != kMaxRating)
+		if (_rating != _maxRating)
 		{
-			_rating = kMaxRating;
+			_rating = _maxRating;
 			[self sendActionsForControlEvents:event];
 		}
 	}
 	else
 	{
-		for (int i = 0 ; i < kMaxRating ; i++)
+		for (int i = 0 ; i < _maxRating ; i++)
 		{
 			if ((touchLocation.x > section.origin.x) && (touchLocation.x < (section.origin.x + section.size.width)))
 			{

@@ -13,6 +13,7 @@
 @interface JSFavStarControl : UIControl
 {
 	UIImage *_emptyImage, *_solidImage;
+    NSInteger _maxRating;
 }
 
 
@@ -33,6 +34,7 @@
  */
 - (id)initWithLocation:(CGPoint)location
             emptyImage:(UIImage *)emptyImage
-            solidImage:(UIImage *)solidImage;
+            solidImage:(UIImage *)solidImage
+          andMaxRating:(NSInteger)maxRating;
 
 @end
