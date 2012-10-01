@@ -12,8 +12,8 @@
 
 // Constants :
 static const CGFloat kFontSize = 20;
-static const NSUInteger kStarWidthAndHeight = 20;
-static const NSUInteger kMaxRating = 5;
+static const NSInteger kStarWidthAndHeight = 20;
+static const NSInteger kMaxRating = 5;
 
 static const NSString *kDefaultEmptyChar = @"☆";
 static const NSString *kDefaultSolidChar = @"★";
@@ -26,6 +26,11 @@ static const NSString *kDefaultSolidChar = @"★";
 #pragma mark - Getters & Setters
 
 @synthesize rating = _rating;
+- (void)setRating:(NSInteger)rating
+{
+    _rating = (rating < 0) ? 0 : rating;
+    _rating = (rating > kMaxRating) ? kMaxRating : rating;
+}
 
 
 /**************************************************************************************************/
