@@ -3,6 +3,7 @@
 @interface FavStarControlViewController : UIViewController
 {
 	IBOutlet UILabel *label;
+    IBOutlet UILabel *endLabel;
 }
 
 @end

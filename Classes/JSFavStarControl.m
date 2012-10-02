@@ -20,7 +20,7 @@ static const NSString *kDefaultSolidChar = @"★";
 
 @interface JSFavStarControl (Private)
 
-- (void)handleTouch:(UITouch *)touch andSendEvent:(UIControlEvents)event;
+- (void)handleTouch:(UITouch *)touch;
 
 @end
 
@@ -115,26 +115,26 @@ static const NSString *kDefaultSolidChar = @"★";
 
 - (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
-	[self handleTouch:touch andSendEvent:UIControlEventValueChanged];
+	[self handleTouch:touch];
 	return YES;
 }
 
 - (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
-	[self handleTouch:touch andSendEvent:UIControlEventValueChanged];
+	[self handleTouch:touch];
 	return YES;
 }
 
 - (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
-	[self handleTouch:touch andSendEvent:UIControlEventValueChanged];
+    [self sendActionsForControlEvents:UIControlEventEditingDidEnd];
 }
 
 
 /**************************************************************************************************/
 #pragma mark - Private Methods
 
-- (void)handleTouch:(UITouch *)touch andSendEvent:(UIControlEvents)event
+- (void)handleTouch:(UITouch *)touch
 {
     CGFloat width = self.frame.size.width;
 	CGRect section = CGRectMake(0, 0, (width / _maxRating), self.frame.size.height);
@@ -146,7 +146,7 @@ static const NSString *kDefaultSolidChar = @"★";
 		if (_rating != 0)
 		{
 			_rating = 0;
-			[self sendActionsForControlEvents:event];
+			[self sendActionsForControlEvents:UIControlEventEditingChanged];
 		}
 	}
 	else if (touchLocation.x > width)
@@ -154,7 +154,7 @@ static const NSString *kDefaultSolidChar = @"★";
 		if (_rating != _maxRating)
 		{
 			_rating = _maxRating;
-			[self sendActionsForControlEvents:event];
+			[self sendActionsForControlEvents:UIControlEventEditingChanged];
 		}
 	}
 	else
@@ -166,7 +166,7 @@ static const NSString *kDefaultSolidChar = @"★";
 				if (_rating != (i+1))
 				{
 					_rating = i+1;
-					[self sendActionsForControlEvents:event];
+					[self sendActionsForControlEvents:UIControlEventEditingChanged];
 				}
 				break;
 			}

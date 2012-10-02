@@ -5,6 +5,7 @@
 @interface FavStarControlViewController (Private)
 
 - (void)updateRating:(id)sender;
+- (void)updateEndRating:(id)sender;
 
 @end
 
@@ -26,7 +27,8 @@
                                                                emptyImage:dot
                                                                solidImage:star
                                                              andMaxRating:6];
-	[rating addTarget:self action:@selector(updateRating:) forControlEvents:UIControlEventValueChanged];
+	[rating addTarget:self action:@selector(updateRating:) forControlEvents:UIControlEventEditingChanged];
+    [rating addTarget:self action:@selector(updateEndRating:) forControlEvents:UIControlEventEditingDidEnd];
 	[self.view addSubview:rating];
 }
 
@@ -38,6 +40,12 @@
 {
 	NSLog(@"Rating: %d", [(JSFavStarControl *)sender rating]);
 	[label setText:[NSString stringWithFormat:@"%d", [(JSFavStarControl *)sender rating]]];
+}
+
+- (void)updateEndRating:(id)sender
+{
+    NSLog(@"End Rating: %d", [(JSFavStarControl *)sender rating]);
+	[endLabel setText:[NSString stringWithFormat:@"%d", [(JSFavStarControl *)sender rating]]];
 }
 
 
