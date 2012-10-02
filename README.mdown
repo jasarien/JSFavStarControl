@@ -1,5 +1,4 @@
-JSFavStarControl
-==================
+# JSFavStarControl
 
 ###### This is a fork from [jasarien/JSFavStarControl](https://github.com/jasarien/JSFavStarControl).
 
@@ -7,13 +6,17 @@ JSFavStarControl is a UI control that resembles the 'star rating' control seen i
 
 JSFavStarControl allows you to select a rating starting from 0 to any number of stars you want.
 
-##### To use it:
+## How To Get Started
 
-Add `JSFavStarControl.h` and `JSFavStarControl.m` to your project.
+- Download JSFavStarControl
+- Add `JSFavStarControl.h` and `JSFavStarControl.m` to your project.
 
-##### Sample code:
 
-```objective-c
+## Example Usage
+
+
+``` objective-c
+
 #include "JSFavStarControl.h"
 
 // Create an instance, initing with :
@@ -36,7 +39,11 @@ JSFavStarControl *rating = [[JSFavStarControl alloc] initWithLocation:(CGPoint)l
 [view addSubview:rating];
 ```
 
-##### License:
+## ARC
+
+JSFavStarControl uses ARC.
+
+## License
 
 Public Domain - there are no restrictions on the use of this code. It may be used without attribution in any commercial or non commercial application.
 
