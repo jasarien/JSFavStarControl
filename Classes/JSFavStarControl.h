@@ -33,8 +33,8 @@
  * If either of these parameters are nil, the class will draw its own stars
  */
 - (id)initWithLocation:(CGPoint)location
-            emptyImage:(UIImage *)emptyImage
-            solidImage:(UIImage *)solidImage
+            emptyImage:(UIImage *)emptyImageOrNil
+            solidImage:(UIImage *)solidImageOrNil
           andMaxRating:(NSInteger)maxRating;
 
 @end

@@ -44,8 +44,8 @@ static const NSString *kDefaultSolidChar = @"★";
 #pragma mark - Birth & Death
 
 - (id)initWithLocation:(CGPoint)location
-            emptyImage:(UIImage *)emptyImage
-            solidImage:(UIImage *)solidImage
+            emptyImage:(UIImage *)emptyImageOrNil
+            solidImage:(UIImage *)solidImageOrNil
           andMaxRating:(NSInteger)maxRating
 {
 	if (self = [self initWithFrame:CGRectMake(location.x,
@@ -57,8 +57,8 @@ static const NSString *kDefaultSolidChar = @"★";
 		self.backgroundColor = [UIColor clearColor];
 		self.opaque = NO;
 		
-		_emptyImage = emptyImage;
-		_solidImage = solidImage;
+		_emptyImage = emptyImageOrNil;
+		_solidImage = solidImageOrNil;
         _maxRating = maxRating;
 	}
 	
