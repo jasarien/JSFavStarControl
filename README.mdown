@@ -1,17 +1,42 @@
 JSFavStarControl
 ==================
 
+###### This is a fork from [jasarien/JSFavStarControl](https://github.com/jasarien/JSFavStarControl).
+
 JSFavStarControl is a UI control that resembles the 'star rating' control seen in the iPod app.
 
-JSFavStarControl allows you to select a rating between 0 and 5 stars.
+JSFavStarControl allows you to select a rating starting from 0 to any number of stars you want.
 
-To use it: 
+##### To use it:
 
-- `#include "JSFavStarControl.h"` where you want to use it
-- Create an instance, initing with a CGPoint (the position in your view from which it will be drawn) and a custom star and dot image if you wish (pass nil if you want to use the default).
-- Add the control as a subview of your view.
+Add `JSFavStarControl.h` and `JSFavStarControl.m` to your project.
 
-License:
+##### Sample code:
+
+```objective-c
+#include "JSFavStarControl.h"
+
+// Create an instance, initing with :
+// - a CGPoint (the position in your view from which it will be drawn) 
+// - a custom empty image and solid image if you wish (pass nil if you want to use the default).
+// - and max rating
+JSFavStarControl *rating = [[JSFavStarControl alloc] initWithLocation:(CGPoint)location
+                                                           emptyImage:(UIImage *)emptyImageOrNil
+                                                           solidImage:(UIImage *)solidImageOrNil
+                                                         andMaxRating:(NSInteger)maxRating];
+
+// Customize the current rating if needed
+[ratingControl setRating:3];
+
+// Listen to control events
+[rating addTarget:(id) action:(SEL) forControlEvents:UIControlEventEditingChanged];
+[rating addTarget:(id) action:(SEL) forControlEvents:UIControlEventEditingDidEnd];
+
+// Add the control as a subview of your view
+[view addSubview:rating];
+```
+
+##### License:
 
 Public Domain - there are no restrictions on the use of this code. It may be used without attribution in any commercial or non commercial application.
 

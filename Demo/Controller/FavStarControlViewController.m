@@ -20,16 +20,27 @@
 {
     [super viewDidLoad];
 	
+    // Create an instance, initing with :
+    // - a CGPoint (the position in your view from which it will be drawn)
+    // - a custom empty image and solid image if you wish (pass nil if you want to use the default).
+    // - and max rating
 	UIImage *dot, *star;
 	dot = [UIImage imageNamed:@"dot.png"];
 	star = [UIImage imageNamed:@"star.png"];
-	JSFavStarControl *rating = [[JSFavStarControl alloc] initWithLocation:CGPointMake(110, 220)
-                                                               emptyImage:dot
-                                                               solidImage:star
-                                                             andMaxRating:6];
-	[rating addTarget:self action:@selector(updateRating:) forControlEvents:UIControlEventEditingChanged];
-    [rating addTarget:self action:@selector(updateEndRating:) forControlEvents:UIControlEventEditingDidEnd];
-	[self.view addSubview:rating];
+	JSFavStarControl *ratingControl = [[JSFavStarControl alloc] initWithLocation:CGPointMake(110, 220)
+                                                                      emptyImage:dot
+                                                                      solidImage:star
+                                                                    andMaxRating:5];
+    
+    // Customize the current rating if needed
+    [ratingControl setRating:3];
+    
+    // Listen to control events
+	[ratingControl addTarget:self action:@selector(updateRating:) forControlEvents:UIControlEventEditingChanged];
+    [ratingControl addTarget:self action:@selector(updateEndRating:) forControlEvents:UIControlEventEditingDidEnd];
+    
+    // Add the control as a subview of your view
+	[self.view addSubview:ratingControl];
 }
 
 
