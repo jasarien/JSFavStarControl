@@ -1,15 +1,15 @@
-# JSFavStarControl
+# AMRatingControl
 
 ###### This is a fork from [jasarien/JSFavStarControl](https://github.com/jasarien/JSFavStarControl).
 
-JSFavStarControl is a UI control that resembles the 'star rating' control seen in the iPod app.
+AMRatingControl is a UI control that resembles the 'star rating' control seen in the iPod app.
 
-JSFavStarControl allows you to select a rating starting from 0 to any number of stars you want.
+AMRatingControl allows you to select a rating starting from 0 to any number of stars you want.
 
 ## How To Get Started
 
-- Download JSFavStarControl
-- Add `JSFavStarControl.h` and `JSFavStarControl.m` to your project.
+- Download AMRatingControl
+- Add `AMRatingControl.h` and `AMRatingControl.m` to your project.
 
 
 ## Example Usage
@@ -17,13 +17,13 @@ JSFavStarControl allows you to select a rating starting from 0 to any number of 
 
 ``` objective-c
 
-#include "JSFavStarControl.h"
+#include "AMRatingControl.h"
 
 // Create an instance, initing with :
 // - a CGPoint (the position in your view from which it will be drawn) 
 // - a custom empty image and solid image if you wish (pass nil if you want to use the default).
 // - and max rating
-JSFavStarControl *rating = [[JSFavStarControl alloc] initWithLocation:(CGPoint)location
+AMRatingControl *rating = [[AMRatingControl alloc] initWithLocation:(CGPoint)location
                                                            emptyImage:(UIImage *)emptyImageOrNil
                                                            solidImage:(UIImage *)solidImageOrNil
                                                          andMaxRating:(NSInteger)maxRating];
@@ -41,7 +41,7 @@ JSFavStarControl *rating = [[JSFavStarControl alloc] initWithLocation:(CGPoint)l
 
 ## ARC
 
-JSFavStarControl uses ARC.
+AMRatingControl uses ARC.
 
 ## License
 

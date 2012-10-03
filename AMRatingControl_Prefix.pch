@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'FavStarControl' target in the 'FavStarControl' project
+// Prefix header for all source files of the 'RatingControl' target in the 'RatingControl' project
 //
 
 #ifdef __OBJC__
