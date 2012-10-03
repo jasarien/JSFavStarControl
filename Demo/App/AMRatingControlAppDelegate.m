@@ -1,8 +1,8 @@
-#import "FavStarControlAppDelegate.h"
-#import "FavStarControlViewController.h"
+#import "AMRatingControlAppDelegate.h"
+#import "AMRatingControlViewController.h"
 
 
-@implementation FavStarControlAppDelegate
+@implementation AMRatingControlAppDelegate
 
 
 /**************************************************************************************************/

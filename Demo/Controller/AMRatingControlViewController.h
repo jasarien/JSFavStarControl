@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 
-@interface FavStarControlViewController : UIViewController
+@interface AMRatingControlViewController : UIViewController
 {
 	IBOutlet UILabel *label;
     IBOutlet UILabel *endLabel;

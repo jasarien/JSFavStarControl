@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface JSFavStarControl : UIControl
+@interface AMRatingControl : UIControl
 {
 	UIImage *_emptyImage, *_solidImage;
     NSInteger _maxRating;

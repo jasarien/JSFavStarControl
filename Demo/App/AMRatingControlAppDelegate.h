@@ -1,13 +1,13 @@
 #import <UIKit/UIKit.h>
 
 
-@class FavStarControlViewController;
+@class AMRatingControlViewController;
 
 
-@interface FavStarControlAppDelegate : NSObject <UIApplicationDelegate>
+@interface AMRatingControlAppDelegate : NSObject <UIApplicationDelegate>
 {
     UIWindow *window;
-    FavStarControlViewController *viewController;
+    AMRatingControlViewController *viewController;
 }
 
 
@@ -15,7 +15,7 @@
 #pragma mark - Getters & Setters
 
 @property (nonatomic, strong) IBOutlet UIWindow *window;
-@property (nonatomic, strong) IBOutlet FavStarControlViewController *viewController;
+@property (nonatomic, strong) IBOutlet AMRatingControlViewController *viewController;
 
 
 @end

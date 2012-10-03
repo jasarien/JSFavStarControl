@@ -1,8 +1,8 @@
-#import "FavStarControlViewController.h"
-#import "JSFavStarControl.h"
+#import "AMRatingControlViewController.h"
+#import "AMRatingControl.h"
 
 
-@interface FavStarControlViewController (Private)
+@interface AMRatingControlViewController (Private)
 
 - (void)updateRating:(id)sender;
 - (void)updateEndRating:(id)sender;
@@ -10,7 +10,7 @@
 @end
 
 
-@implementation FavStarControlViewController
+@implementation AMRatingControlViewController
 
 
 /**************************************************************************************************/
@@ -27,7 +27,7 @@
 	UIImage *dot, *star;
 	dot = [UIImage imageNamed:@"dot.png"];
 	star = [UIImage imageNamed:@"star.png"];
-	JSFavStarControl *ratingControl = [[JSFavStarControl alloc] initWithLocation:CGPointMake(110, 220)
+	AMRatingControl *ratingControl = [[AMRatingControl alloc] initWithLocation:CGPointMake(110, 220)
                                                                       emptyImage:dot
                                                                       solidImage:star
                                                                     andMaxRating:5];
@@ -49,14 +49,14 @@
 
 - (void)updateRating:(id)sender
 {
-	NSLog(@"Rating: %d", [(JSFavStarControl *)sender rating]);
-	[label setText:[NSString stringWithFormat:@"%d", [(JSFavStarControl *)sender rating]]];
+	NSLog(@"Rating: %d", [(AMRatingControl *)sender rating]);
+	[label setText:[NSString stringWithFormat:@"%d", [(AMRatingControl *)sender rating]]];
 }
 
 - (void)updateEndRating:(id)sender
 {
-    NSLog(@"End Rating: %d", [(JSFavStarControl *)sender rating]);
-	[endLabel setText:[NSString stringWithFormat:@"%d", [(JSFavStarControl *)sender rating]]];
+    NSLog(@"End Rating: %d", [(AMRatingControl *)sender rating]);
+	[endLabel setText:[NSString stringWithFormat:@"%d", [(AMRatingControl *)sender rating]]];
 }
 
 

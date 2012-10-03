@@ -7,7 +7,7 @@
 //  http://jamsoftonline.com
 //
 
-#import "JSFavStarControl.h"
+#import "AMRatingControl.h"
 
 
 // Constants :
@@ -18,14 +18,14 @@ static const NSString *kDefaultEmptyChar = @"☆";
 static const NSString *kDefaultSolidChar = @"★";
 
 
-@interface JSFavStarControl (Private)
+@interface AMRatingControl (Private)
 
 - (void)handleTouch:(UITouch *)touch;
 
 @end
 
 
-@implementation JSFavStarControl
+@implementation AMRatingControl
 
 
 /**************************************************************************************************/
