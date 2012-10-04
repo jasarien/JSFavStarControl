@@ -6,6 +6,8 @@ AMRatingControl is a UI control that resembles the 'star rating' control seen in
 
 AMRatingControl allows you to select a rating starting from 0 to any number of stars you want.
 
+You can use default star symbols and customize colors or specify custom images.
+
 
 ## How To Get Started
 
