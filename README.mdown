@@ -57,7 +57,7 @@ AMRatingControl *coloredRatingControl = [[AMRatingControl alloc] initWithLocatio
 [view addSubview:coloredRatingControl];
 ```
 
-![Exmple ScreenShot](/screenshot.png)
+<img src="https://raw.github.com/amseddi/AMRatingControl/master/screenshot.png" alt="Example ScreenShot" title="Example ScreenShot" style="display:block; margin: 0 auto;">
 
 ## ARC
 
