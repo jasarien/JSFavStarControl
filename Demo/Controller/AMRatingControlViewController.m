@@ -41,7 +41,7 @@
 	UIImage *dot, *star;
 	dot = [UIImage imageNamed:@"dot.png"];
 	star = [UIImage imageNamed:@"star.png"];
-	AMRatingControl *imagesRatingControl = [[AMRatingControl alloc] initWithLocation:CGPointMake(110, 220)
+	AMRatingControl *imagesRatingControl = [[AMRatingControl alloc] initWithLocation:CGPointMake(110, 250)
                                                                       emptyImage:dot
                                                                       solidImage:star
                                                                     andMaxRating:5];
@@ -50,9 +50,9 @@
     // - a CGPoint (the position in your view from which it will be drawn)
     // - a custom empty image and solid image if you wish (pass nil if you want to use the default).
     // - and max rating
-	AMRatingControl *coloredRatingControl = [[AMRatingControl alloc] initWithLocation:CGPointMake(110, 280)
-                                                                           emptyColor:[UIColor grayColor]
-                                                                           solidColor:[UIColor yellowColor]
+	AMRatingControl *coloredRatingControl = [[AMRatingControl alloc] initWithLocation:CGPointMake(110, 370)
+                                                                           emptyColor:[UIColor yellowColor]
+                                                                           solidColor:[UIColor redColor]
                                                                          andMaxRating:5];
                                                                         
     
