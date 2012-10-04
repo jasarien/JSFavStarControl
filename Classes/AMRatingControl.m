@@ -17,6 +17,14 @@ static const NSString *kDefaultSolidChar = @"★";
 
 @interface AMRatingControl (Private)
 
+- (id)initWithLocation:(CGPoint)location
+            emptyImage:(UIImage *)emptyImageOrNil
+            solidImage:(UIImage *)solidImageOrNil
+            emptyColor:(UIColor *)emptyColor
+            solidColor:(UIColor *)solidColor
+          andMaxRating:(NSInteger)maxRating;
+
+
 - (void)handleTouch:(UITouch *)touch;
 
 @end
@@ -40,32 +48,48 @@ static const NSString *kDefaultSolidChar = @"★";
 /**************************************************************************************************/
 #pragma mark - Birth & Death
 
+- (id)initWithLocation:(CGPoint)location andMaxRating:(NSInteger)maxRating
+{
+    return [self initWithLocation:location
+                       emptyImage:nil
+                       solidImage:nil
+                       emptyColor:nil
+                       solidColor:nil
+                     andMaxRating:maxRating];
+}
+
 - (id)initWithLocation:(CGPoint)location
             emptyImage:(UIImage *)emptyImageOrNil
             solidImage:(UIImage *)solidImageOrNil
           andMaxRating:(NSInteger)maxRating
 {
-	if (self = [self initWithFrame:CGRectMake(location.x,
-                                              location.y,
-                                              (maxRating * kStarWidthAndHeight),
-                                              kStarWidthAndHeight)])
-	{
-		_rating = 0;
-		self.backgroundColor = [UIColor clearColor];
-		self.opaque = NO;
-		
-		_emptyImage = emptyImageOrNil;
-		_solidImage = solidImageOrNil;
-        _maxRating = maxRating;
-	}
-	
-	return self;
+	return [self initWithLocation:location
+                       emptyImage:emptyImageOrNil
+                       solidImage:solidImageOrNil
+                       emptyColor:nil
+                       solidColor:nil
+                     andMaxRating:maxRating];
+}
+
+- (id)initWithLocation:(CGPoint)location
+            emptyColor:(UIColor *)emptyColor
+            solidColor:(UIColor *)solidColor
+          andMaxRating:(NSInteger)maxRating
+{
+    return [self initWithLocation:location
+                       emptyImage:nil
+                       solidImage:nil
+                       emptyColor:emptyColor
+                       solidColor:solidColor
+                     andMaxRating:maxRating];
 }
 
 - (void)dealloc
 {
 	_emptyImage = nil,
 	_solidImage = nil;
+    _emptyColor = nil;
+    _solidColor = nil;
 }
 
 
@@ -84,6 +108,7 @@ static const NSString *kDefaultSolidChar = @"★";
         }
 		else
         {
+            CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), _solidColor.CGColor);
             [kDefaultSolidChar drawAtPoint:currPoint withFont:[UIFont boldSystemFontOfSize:kFontSize]];
         }
 			
@@ -100,6 +125,7 @@ static const NSString *kDefaultSolidChar = @"★";
         }
 		else
         {
+            CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), _emptyColor.CGColor);
 			[kDefaultEmptyChar drawAtPoint:currPoint withFont:[UIFont boldSystemFontOfSize:kFontSize]];
         }
 		currPoint.x += kStarWidthAndHeight;
@@ -130,6 +156,32 @@ static const NSString *kDefaultSolidChar = @"★";
 
 /**************************************************************************************************/
 #pragma mark - Private Methods
+
+- (id)initWithLocation:(CGPoint)location
+            emptyImage:(UIImage *)emptyImageOrNil
+            solidImage:(UIImage *)solidImageOrNil
+            emptyColor:(UIColor *)emptyColor
+            solidColor:(UIColor *)solidColor
+          andMaxRating:(NSInteger)maxRating
+{
+    if (self = [self initWithFrame:CGRectMake(location.x,
+                                              location.y,
+                                              (maxRating * kStarWidthAndHeight),
+                                              kStarWidthAndHeight)])
+	{
+		_rating = 0;
+		self.backgroundColor = [UIColor clearColor];
+		self.opaque = NO;
+		
+		_emptyImage = emptyImageOrNil;
+		_solidImage = solidImageOrNil;
+        _emptyColor = emptyColor;
+        _solidColor = solidColor;
+        _maxRating = maxRating;
+	}
+	
+	return self;
+}
 
 - (void)handleTouch:(UITouch *)touch
 {

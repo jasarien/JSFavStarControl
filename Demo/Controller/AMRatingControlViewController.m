@@ -20,27 +20,48 @@
 {
     [super viewDidLoad];
 	
-    // Create an instance, initing with :
+    // Create a simple instance, initing with :
+    // - a CGPoint (the position in your view from which it will be drawn)
+    // - and max rating
+	AMRatingControl *simpleRatingControl = [[AMRatingControl alloc] initWithLocation:CGPointMake(110, 50)
+                                                                  andMaxRating:5];
+    
+    // Customize the current rating if needed
+    [simpleRatingControl setRating:3];
+    
+    // Listen to control events
+	[simpleRatingControl addTarget:self action:@selector(updateRating:) forControlEvents:UIControlEventEditingChanged];
+    [simpleRatingControl addTarget:self action:@selector(updateEndRating:) forControlEvents:UIControlEventEditingDidEnd];
+
+    
+    // Create an instance with images, initing with :
     // - a CGPoint (the position in your view from which it will be drawn)
     // - a custom empty image and solid image if you wish (pass nil if you want to use the default).
     // - and max rating
 	UIImage *dot, *star;
 	dot = [UIImage imageNamed:@"dot.png"];
 	star = [UIImage imageNamed:@"star.png"];
-	AMRatingControl *ratingControl = [[AMRatingControl alloc] initWithLocation:CGPointMake(110, 220)
+	AMRatingControl *imagesRatingControl = [[AMRatingControl alloc] initWithLocation:CGPointMake(110, 220)
                                                                       emptyImage:dot
                                                                       solidImage:star
                                                                     andMaxRating:5];
     
-    // Customize the current rating if needed
-    [ratingControl setRating:3];
+    // Create an instance with custom color, initing with :
+    // - a CGPoint (the position in your view from which it will be drawn)
+    // - a custom empty image and solid image if you wish (pass nil if you want to use the default).
+    // - and max rating
+	AMRatingControl *coloredRatingControl = [[AMRatingControl alloc] initWithLocation:CGPointMake(110, 280)
+                                                                           emptyColor:[UIColor grayColor]
+                                                                           solidColor:[UIColor yellowColor]
+                                                                         andMaxRating:5];
+                                                                        
     
-    // Listen to control events
-	[ratingControl addTarget:self action:@selector(updateRating:) forControlEvents:UIControlEventEditingChanged];
-    [ratingControl addTarget:self action:@selector(updateEndRating:) forControlEvents:UIControlEventEditingDidEnd];
     
-    // Add the control as a subview of your view
-	[self.view addSubview:ratingControl];
+    
+    // Add the control(s) as a subview of your view
+	[self.view addSubview:simpleRatingControl];
+    [self.view addSubview:imagesRatingControl];
+    [self.view addSubview:coloredRatingControl];
 }
 
 

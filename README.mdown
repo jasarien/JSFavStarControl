@@ -6,6 +6,7 @@ AMRatingControl is a UI control that resembles the 'star rating' control seen in
 
 AMRatingControl allows you to select a rating starting from 0 to any number of stars you want.
 
+
 ## How To Get Started
 
 - Download AMRatingControl
@@ -19,25 +20,44 @@ AMRatingControl allows you to select a rating starting from 0 to any number of s
 
 #include "AMRatingControl.h"
 
-// Create an instance, initing with :
-// - a CGPoint (the position in your view from which it will be drawn) 
-// - a custom empty image and solid image if you wish (pass nil if you want to use the default).
+// Create a simple instance, initing with :
+// - a CGPoint (the position in your view from which it will be drawn)
 // - and max rating
-AMRatingControl *rating = [[AMRatingControl alloc] initWithLocation:(CGPoint)location
-                                                           emptyImage:(UIImage *)emptyImageOrNil
-                                                           solidImage:(UIImage *)solidImageOrNil
-                                                         andMaxRating:(NSInteger)maxRating];
+AMRatingControl *simpleRatingControl = [[AMRatingControl alloc] initWithLocation:(CGPoint)location
+                                                         			andMaxRating:(NSInteger)maxRating];
 
 // Customize the current rating if needed
-[ratingControl setRating:3];
+[ratingControl setRating:(NSInteger)rating];
 
 // Listen to control events
-[rating addTarget:(id) action:(SEL) forControlEvents:UIControlEventEditingChanged];
-[rating addTarget:(id) action:(SEL) forControlEvents:UIControlEventEditingDidEnd];
+[simpleRatingControl addTarget:self action:@selector(updateRating:) forControlEvents:UIControlEventEditingChanged];
+[simpleRatingControl addTarget:self action:@selector(updateEndRating:) forControlEvents:UIControlEventEditingDidEnd];
 
-// Add the control as a subview of your view
-[view addSubview:rating];
+// Create an instance with images, initing with :
+// - a CGPoint (the position in your view from which it will be drawn)
+// - a custom empty image and solid image if you wish (pass nil if you want to use the default).
+// - and max rating
+AMRatingControl *imagesRatingControl = [[AMRatingControl alloc] initWithLocation:(CGPoint)location
+                                          			                  emptyImage:(UIImage *)emptyImageOrNil
+                                                     			      solidImage:(UIImage *)solidImageOrNil
+	                                                                andMaxRating:(NSInteger)maxRating];
+
+// Create an instance with custom colors, initing with :
+// - a CGPoint (the position in your view from which it will be drawn)
+// - a custom empty image and solid image if you wish (pass nil if you want to use the default).
+// - and max rating
+AMRatingControl *coloredRatingControl = [[AMRatingControl alloc] initWithLocation:(CGPoint)location
+                                                                       emptyColor:(UIColor *)emptyColorOrNi
+                                                                       solidColor:(UIColor *)solidColorOrNi
+                                                                     andMaxRating:(NSInteger)maxRating];  
+
+// Add the control(s) as subview of your view
+[view addSubview:simpleRatingControl];
+[view addSubview:imagesRatingControl];
+[view addSubview:coloredRatingControl];
 ```
+
+![Exmple ScreenShot](/screenshot.png)
 
 ## ARC
 
