@@ -67,5 +67,5 @@ AMRatingControl uses ARC.
 
 ## License
 
-Public Domain - there are no restrictions on the use of this code. It may be used without attribution in any commercial or non commercial application.
+AMRatingControl is available under the MIT license. See the LICENSE file for more info.
 
