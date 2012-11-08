@@ -109,10 +109,10 @@ static const NSString *kDefaultSolidChar = @"★";
 		else
         {
             CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), _solidColor.CGColor);
-            [kDefaultSolidChar drawAtPoint:currPoint withFont:[UIFont boldSystemFontOfSize:kFontSize]];
+            [kDefaultSolidChar drawAtPoint:currPoint withFont:[UIFont boldSystemFontOfSize:_fontSize]];
         }
 			
-		currPoint.x += kStarWidthAndHeight;
+		currPoint.x += _starWidthAndHeight;
 	}
 	
 	NSInteger remaining = _maxRating - _rating;
@@ -126,9 +126,9 @@ static const NSString *kDefaultSolidChar = @"★";
 		else
         {
             CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), _emptyColor.CGColor);
-			[kDefaultEmptyChar drawAtPoint:currPoint withFont:[UIFont boldSystemFontOfSize:kFontSize]];
+			[kDefaultEmptyChar drawAtPoint:currPoint withFont:[UIFont boldSystemFontOfSize:_fontSize]];
         }
-		currPoint.x += kStarWidthAndHeight;
+		currPoint.x += _starWidthAndHeight;
 	}
 }
 
@@ -178,6 +178,8 @@ static const NSString *kDefaultSolidChar = @"★";
         _emptyColor = emptyColor;
         _solidColor = solidColor;
         _maxRating = maxRating;
+        _fontSize = kFontSize;
+        _starWidthAndHeight = kStarWidthAndHeight;
 	}
 	
 	return self;
@@ -223,6 +225,12 @@ static const NSString *kDefaultSolidChar = @"★";
 		}
 	}
 	[self setNeedsDisplay];
+}
+
+- (void)setStarWidthAndHeight:(NSUInteger)starWidthAndHeight {
+    _starWidthAndHeight = starWidthAndHeight;
+    CGRect newFrame = CGRectMake(self.frame.origin.x, self.frame.origin.y, _maxRating *starWidthAndHeight, starWidthAndHeight);
+    self.frame = newFrame;
 }
 
 @end
