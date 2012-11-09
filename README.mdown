@@ -11,8 +11,15 @@ You can use default star symbols and customize colors or specify custom images.
 
 ## How To Get Started
 
-- Download AMRatingControl
-- Add `AMRatingControl.h` and `AMRatingControl.m` to your project.
+**- Using [CocoaPods](http://cocoapods.org/)**
+
+``` ruby
+pod 'AMRatingControl'
+```
+
+**- Without CocoaPods**
+
+Add `AMRatingControl.h` and `AMRatingControl.m` to your project.
 
 
 ## Example Usage
