@@ -37,6 +37,9 @@ static const NSString *kDefaultSolidChar = @"★";
 #pragma mark - Getters & Setters
 
 @synthesize rating = _rating;
+@synthesize fontSize = _fontSize;
+@synthesize starWidthAndHeight = _starWidthAndHeight;
+
 - (void)setRating:(NSInteger)rating
 {
     _rating = (rating < 0) ? 0 : rating;
@@ -44,6 +47,12 @@ static const NSString *kDefaultSolidChar = @"★";
     [self setNeedsDisplay];
 }
 
+- (void)setStarWidthAndHeight:(NSUInteger)starWidthAndHeight
+{
+    _starWidthAndHeight = starWidthAndHeight;
+    CGRect newFrame = CGRectMake(self.frame.origin.x, self.frame.origin.y, _maxRating *starWidthAndHeight, starWidthAndHeight);
+    self.frame = newFrame;
+}
 
 /**************************************************************************************************/
 #pragma mark - Birth & Death
@@ -225,12 +234,6 @@ static const NSString *kDefaultSolidChar = @"★";
 		}
 	}
 	[self setNeedsDisplay];
-}
-
-- (void)setStarWidthAndHeight:(NSUInteger)starWidthAndHeight {
-    _starWidthAndHeight = starWidthAndHeight;
-    CGRect newFrame = CGRectMake(self.frame.origin.x, self.frame.origin.y, _maxRating *starWidthAndHeight, starWidthAndHeight);
-    self.frame = newFrame;
 }
 
 @end
