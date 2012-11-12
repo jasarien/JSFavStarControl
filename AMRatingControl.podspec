@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "AMRatingControl"
-  s.version      = "1.1"
+  s.version      = "1.1.3"
   s.summary      = "A simple rating control for the iPhone."
   s.description  = <<-DESC
                     AMRatingControl is a UI control that resembles the 'star rating' control seen in the iPod app.
@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
 
   s.author       = "amseddi"
-  s.source       = { :git => "https://github.com/amseddi/AMRatingControl.git", :tag => "1.1.2" }
+  s.source       = { :git => "https://github.com/amseddi/AMRatingControl.git", :tag => "1.1.3" }
 
   s.platform     = :ios, '5.0'
   
