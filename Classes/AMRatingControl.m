@@ -168,8 +168,8 @@ static const NSString *kDefaultSolidChar = @"★";
 
 - (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    if(self.updateEndRatingBlock) {
-        self.updateEndRatingBlock(_rating);
+    if(self.editingDidEndBlock) {
+        self.editingDidEndBlock(_rating);
     }
 }
 
@@ -224,8 +224,8 @@ static const NSString *kDefaultSolidChar = @"★";
 		if (_rating != 0)
 		{
 			_rating = 0;
-            if(self.updateRatingBlock) {
-                self.updateRatingBlock(_rating);
+            if(self.editingChangedBlock) {
+                self.editingChangedBlock(_rating);
             }
 		}
 	}
@@ -234,8 +234,8 @@ static const NSString *kDefaultSolidChar = @"★";
 		if (_rating != _maxRating)
 		{
 			_rating = _maxRating;
-            if(self.updateRatingBlock) {
-                self.updateRatingBlock(_rating);
+            if(self.editingChangedBlock) {
+                self.editingChangedBlock(_rating);
             }
 		}
 	}
@@ -248,8 +248,8 @@ static const NSString *kDefaultSolidChar = @"★";
 				if (_rating != (i+1))
 				{
 					_rating = i+1;
-                    if(self.updateRatingBlock) {
-                        self.updateRatingBlock(_rating);
+                    if(self.editingChangedBlock) {
+                        self.editingChangedBlock(_rating);
                     }
 				}
 				break;

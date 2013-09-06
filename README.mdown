@@ -38,9 +38,16 @@ AMRatingControl *simpleRatingControl = [[AMRatingControl alloc] initWithLocation
 // Customize the current rating if needed
 [ratingControl setRating:(NSInteger)rating];
 
-// Listen to control events
-[simpleRatingControl addTarget:self action:@selector(updateRating:) forControlEvents:UIControlEventEditingChanged];
-[simpleRatingControl addTarget:self action:@selector(updateEndRating:) forControlEvents:UIControlEventEditingDidEnd];
+// Define block to handle events
+simpleRatingControl.editingChangedBlock = ^(NSUInteger rating)
+{
+    [label setText:[NSString stringWithFormat:@"%d", rating]];
+};
+    
+simpleRatingControl.editingDidEndBlock = ^(NSUInteger rating)
+{
+    [endLabel setText:[NSString stringWithFormat:@"%d", rating]];
+};
 
 // Create an instance with images, initing with :
 // - a CGPoint (the position in your view from which it will be drawn)

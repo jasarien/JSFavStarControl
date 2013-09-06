@@ -24,21 +24,23 @@
     // - a CGPoint (the position in your view from which it will be drawn)
     // - and max rating
 	AMRatingControl *simpleRatingControl = [[AMRatingControl alloc] initWithLocation:CGPointMake(90, 50)
-                                                                  andMaxRating:5];
+                                                                        andMaxRating:5];
     
     // Customize the current rating if needed
     [simpleRatingControl setRating:3];
     [simpleRatingControl setStarSpacing:10];
     
-    // Listen to control events
-	simpleRatingControl.updateRatingBlock = ^(NSUInteger rating) {
+    // Define block to handle events
+	simpleRatingControl.editingChangedBlock = ^(NSUInteger rating)
+    {
         [label setText:[NSString stringWithFormat:@"%d", rating]];
     };
     
-    simpleRatingControl.updateEndRatingBlock = ^(NSUInteger rating) {
+    simpleRatingControl.editingDidEndBlock = ^(NSUInteger rating)
+    {
         [endLabel setText:[NSString stringWithFormat:@"%d", rating]];
     };
-
+    
     
     // Create an instance with images, initing with :
     // - a CGPoint (the position in your view from which it will be drawn)
@@ -48,9 +50,9 @@
 	dot = [UIImage imageNamed:@"dot.png"];
 	star = [UIImage imageNamed:@"star.png"];
 	AMRatingControl *imagesRatingControl = [[AMRatingControl alloc] initWithLocation:CGPointMake(110, 250)
-                                                                      emptyImage:dot
-                                                                      solidImage:star
-                                                                    andMaxRating:5];
+                                                                          emptyImage:dot
+                                                                          solidImage:star
+                                                                        andMaxRating:5];
     
     // Create an instance with custom color, initing with :
     // - a CGPoint (the position in your view from which it will be drawn)
@@ -60,7 +62,7 @@
                                                                            emptyColor:[UIColor yellowColor]
                                                                            solidColor:[UIColor redColor]
                                                                          andMaxRating:5];
-                                                                        
+    
     
     
     
