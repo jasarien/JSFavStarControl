@@ -187,7 +187,8 @@ static const NSString *kDefaultSolidChar = @"★";
 
 - (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    if(self.editingDidEndBlock) {
+    if (self.editingDidEndBlock)
+    {
         self.editingDidEndBlock(_rating);
     }
 }
@@ -256,10 +257,16 @@ static const NSString *kDefaultSolidChar = @"★";
 
 - (void)adjustFrame
 {
-    if (_respondsToTranslatesAutoresizingMaskIntoConstraints && !self.translatesAutoresizingMaskIntoConstraints) {
+    if (_respondsToTranslatesAutoresizingMaskIntoConstraints && !self.translatesAutoresizingMaskIntoConstraints)
+    {
         [self invalidateIntrinsicContentSize];
-    } else {
-        CGRect newFrame = CGRectMake(self.frame.origin.x, self.frame.origin.y, _maxRating * _starWidthAndHeight + (_maxRating - 1) * _starSpacing, _starWidthAndHeight);
+    }
+    else
+    {
+        CGRect newFrame = CGRectMake(self.frame.origin.x,
+                                     self.frame.origin.y,
+                                     _maxRating * _starWidthAndHeight + (_maxRating - 1) * _starSpacing,
+                                     _starWidthAndHeight);
         self.frame = newFrame;
     }
 }
@@ -276,7 +283,8 @@ static const NSString *kDefaultSolidChar = @"★";
 		if (_rating != 0)
 		{
 			_rating = 0;
-            if(self.editingChangedBlock) {
+            if (self.editingChangedBlock)
+            {
                 self.editingChangedBlock(_rating);
             }
 		}
@@ -286,7 +294,8 @@ static const NSString *kDefaultSolidChar = @"★";
 		if (_rating != _maxRating)
 		{
 			_rating = _maxRating;
-            if(self.editingChangedBlock) {
+            if (self.editingChangedBlock)
+            {
                 self.editingChangedBlock(_rating);
             }
 		}
@@ -297,10 +306,11 @@ static const NSString *kDefaultSolidChar = @"★";
 		{
 			if ((touchLocation.x > section.origin.x) && (touchLocation.x < (section.origin.x + _starWidthAndHeight)))
 			{
-				if (_rating != (i+1))
+				if (_rating != (i + 1))
 				{
-					_rating = i+1;
-                    if(self.editingChangedBlock) {
+					_rating = i + 1;
+                    if (self.editingChangedBlock)
+                    {
                         self.editingChangedBlock(_rating);
                     }
 				}
