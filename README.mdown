@@ -1,17 +1,85 @@
-JSFavStarControl
-==================
+# AMRatingControl
 
-JSFavStarControl is a UI control that resembles the 'star rating' control seen in the iPod app.
+###### This is a fork from [jasarien/JSFavStarControl](https://github.com/jasarien/JSFavStarControl).
 
-JSFavStarControl allows you to select a rating between 0 and 5 stars.
+AMRatingControl is a UI control that resembles the 'star rating' control seen in the iPod app.
 
-To use it: 
+AMRatingControl allows you to select a rating starting from 0 to any number of stars you want.
 
-- `#include "JSFavStarControl.h"` where you want to use it
-- Create an instance, initing with a CGPoint (the position in your view from which it will be drawn) and a custom star and dot image if you wish (pass nil if you want to use the default).
-- Add the control as a subview of your view.
+You can use default star symbols and customize colors or specify custom images.
 
-License:
 
-Public Domain - there are no restrictions on the use of this code. It may be used without attribution in any commercial or non commercial application.
+## How To Get Started
+
+**- Using [CocoaPods](http://cocoapods.org/)**
+
+``` ruby
+pod 'AMRatingControl'
+```
+
+**- Without CocoaPods**
+
+Add `AMRatingControl.h` and `AMRatingControl.m` to your project.
+
+
+## Example Usage
+
+
+``` objective-c
+
+#include "AMRatingControl.h"
+
+// Create a simple instance, initing with :
+// - a CGPoint (the position in your view from which it will be drawn)
+// - and max rating
+AMRatingControl *simpleRatingControl = [[AMRatingControl alloc] initWithLocation:(CGPoint)location
+                                                         			andMaxRating:(NSInteger)maxRating];
+
+// Customize the current rating if needed
+[ratingControl setRating:(NSInteger)rating];
+
+// Define block to handle events
+simpleRatingControl.editingChangedBlock = ^(NSUInteger rating)
+{
+    [label setText:[NSString stringWithFormat:@"%d", rating]];
+};
+    
+simpleRatingControl.editingDidEndBlock = ^(NSUInteger rating)
+{
+    [endLabel setText:[NSString stringWithFormat:@"%d", rating]];
+};
+
+// Create an instance with images, initing with :
+// - a CGPoint (the position in your view from which it will be drawn)
+// - a custom empty image and solid image if you wish (pass nil if you want to use the default).
+// - and max rating
+AMRatingControl *imagesRatingControl = [[AMRatingControl alloc] initWithLocation:(CGPoint)location
+                                          			                  emptyImage:(UIImage *)emptyImageOrNil
+                                                     			      solidImage:(UIImage *)solidImageOrNil
+	                                                                andMaxRating:(NSInteger)maxRating];
+
+// Create an instance with custom colors, initing with :
+// - a CGPoint (the position in your view from which it will be drawn)
+// - a custom empty image and solid image if you wish (pass nil if you want to use the default).
+// - and max rating
+AMRatingControl *coloredRatingControl = [[AMRatingControl alloc] initWithLocation:(CGPoint)location
+                                                                       emptyColor:(UIColor *)emptyColorOrNi
+                                                                       solidColor:(UIColor *)solidColorOrNi
+                                                                     andMaxRating:(NSInteger)maxRating];  
+
+// Add the control(s) as subview of your view
+[view addSubview:simpleRatingControl];
+[view addSubview:imagesRatingControl];
+[view addSubview:coloredRatingControl];
+```
+
+<img src="https://raw.github.com/amseddi/AMRatingControl/master/screenshot.png" alt="Example ScreenShot" title="Example ScreenShot" style="display:block; margin: 0 auto;">
+
+## ARC
+
+AMRatingControl uses ARC.
+
+## License
+
+AMRatingControl is available under the MIT license. See the LICENSE file for more info.
 
