@@ -25,12 +25,19 @@
     [super viewDidLoad];
 	
 	UIImage *dot, *star;
-	dot = [UIImage imageNamed:@"dot.png"];
-	star = [UIImage imageNamed:@"star.png"];
-	JSFavStarControl *rating = [[JSFavStarControl alloc] initWithLocation:CGPointMake(110, 220) dotImage:dot starImage:star];
+	dot = [UIImage imageNamed:@"dot10x10.png"];
+	star = [UIImage imageNamed:@"star10x10.png"];
+	JSFavStarControl *rating = [[JSFavStarControl alloc] initWithImages:CGRectMake(110, 220, 100, 20) 
+                                                                 dotImage:dot 
+                                                                starImage:star];
+    rating.rating = 1;
+    
 	[rating addTarget:self action:@selector(updateRating:) forControlEvents:UIControlEventValueChanged];
 	[self.view addSubview:rating];
+    
+#if !__has_feature(objc_arc)    
 	[rating release];
+#endif
 }
 
 - (void)updateRating:(id)sender
@@ -61,7 +68,9 @@
 
 
 - (void)dealloc {
+#if !__has_feature(objc_arc)
     [super dealloc];
+#endif
 }
 
 @end
